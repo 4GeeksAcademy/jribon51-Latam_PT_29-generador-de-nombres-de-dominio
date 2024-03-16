@@ -45,7 +45,6 @@ for(let p of pronoun){
 
 */
 
-
 /* ejercicio dos cambio de extension
 
 let pronoun = ['the', 'our'];
@@ -65,44 +64,60 @@ for(let p of pronoun){
 
 }
 
-*/ 
+*/
 
 //ejercicio Agrega "domain hacks" donde la extensión forma parte del dominio
 
-let pronoun = ['the', 'our'];
-let adj = ['great', 'big'];
-let noun = ['aico','jogger', 'racom', 'puedes'];
-let extensiones=['com', 'net', 'org', 'io', 'gov', 'edu', 'info', 'biz', 'co', 'tv','es'];
+let pronoun = ["the", "our"];
+let adj = ["great", "big"];
+let noun = ["aico", "jogger", "racom", "puedes"];
+let extensiones = [
+  "com",
+  "net",
+  "org",
+  "io",
+  "gov",
+  "edu",
+  "info",
+  "biz",
+  "co",
+  "tv",
+  "es",
+];
 
-let dominio="";
+let dominio = "";
 
+for (let valoPronoun of pronoun) {
+  for (let valorAdj of adj) {
+    for (let valorNoun of noun) {
+      dominio = valoPronoun + valorAdj + valorNoun;
 
+      let resultado = "";
 
-for(let p of pronoun){
-  for(let a of adj){
-    for(let n of noun){
-      dominio=(p+a+n);  
-
-      let resultado='';
-
-      for(let indice of extensiones){
-        let num=indice.length;
-        let rebanada= dominio.slice(dominio.length-num,dominio.length);
-        if(rebanada==indice){
-          let arreglo=dominio.split('');
-          arreglo.splice(arreglo.length-num,0,'.');
-          resultado=arreglo.join('');
+      for (let ValorExtensiones of extensiones) {
+        let largoExtension = ValorExtensiones.length;
+        let rebanadaDominio = dominio.slice(
+          dominio.length - largoExtension,
+          dominio.length
+        );
+        if (rebanadaDominio == ValorExtensiones) {
+          let arreglo = dominio.split("");
+          arreglo.splice(arreglo.length - largoExtension, 0, ".");
+          resultado = arreglo.join("");
         }
       }
 
-      if(resultado==''){
-        resultado=p+a+n+'.'+extensiones[Math.floor(Math.random()*extensiones.length)]; 
+      if (resultado == "") {
+        resultado =
+          valoPronoun +
+          valorAdj +
+          valorNoun +
+          "." +
+          extensiones[Math.floor(Math.random() * extensiones.length)];
         console.log(resultado);
-      }else{
+      } else {
         console.log(resultado);
       }
-
     }
   }
-
 }
